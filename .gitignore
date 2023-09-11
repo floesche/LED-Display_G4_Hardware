@@ -1,7 +1,52 @@
+# Created by https://www.toptal.com/developers/gitignore/api/freecad,kicad
+# Edit at https://www.toptal.com/developers/gitignore?templates=freecad,kicad
+
+### FreeCad ###
+*.pyc
+*.fcstd1
+*.FCStd1
+*.fcstd2
+*.FCStd2
+
+### KiCad ###
+# For PCBs designed using KiCad: https://www.kicad.org/
+# Format documentation: https://kicad.org/help/file-formats/
+
+# Temporary files
+*.000
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups
+*.kicad_prl
+*.sch-bak
 *~
 *-backups
 *.dsn
 *.ses
+
+# Exported BOM files
+*.xml
+*.csv
+
+### KiCad Patch ###
+rescue-backup/
+
+*.tsv
+bom/
+
+# Gerber export output
+out/
+
+# End of https://www.toptal.com/developers/gitignore/api/freecad,kicad
+
+*~
+
+# Netlist files (exported from Eeschema)
+*.net
+
+## INTERNAL
 fp-info-cache
 *#auto_saved_files#
 *.swp
