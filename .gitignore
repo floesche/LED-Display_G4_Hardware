@@ -22,16 +22,7 @@
 *.kicad_prl
 *.sch-bak
 *~
-_autosave-*
-*.tmp
-*-save.pro
-*-save.kicad_pcb
-fp-info-cache
-
-# Netlist files (exported from Eeschema)
-*.net
-
-# Autorouter files (exported from Pcbnew)
+*-backups
 *.dsn
 *.ses
 
@@ -51,3 +42,14 @@ out/
 # End of https://www.toptal.com/developers/gitignore/api/freecad,kicad
 
 *~
+
+# Netlist files (exported from Eeschema)
+*.net
+
+## INTERNAL
+fp-info-cache
+*#auto_saved_files#
+*.swp
+*_autosave*
+*.~lock*
+*.lck
