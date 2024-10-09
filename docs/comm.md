@@ -14,9 +14,9 @@ The communication PCB or "comm board" measures 40×40mm² and has a 15 pin conne
 
 ![Connections between panels](assets/comm_connections.jpg){:standalone .ifr}
 
-To identify packets for the current panel, each comm uses four of its connectors as "chip select" lines. This means, while the first chip select line is active, the comm board splits and forwards the received data to the driver board. Independently, the data is always forwarded to the next panel. In addition, the comm board drops the first chip select line from the input and makes the second input chip select line the first output chip select, the 3rd becomes second, and the fourth the 3rd output. This way, up to four stacked panel PCB can be addressed individually.
+To identify packets for the current panel, each comm uses four of its connectors as "chip select" lines. This means, while the first chip select line is active, the comm board splits and forwards the received data to the driver board. Independently, the data is always forwarded to the next panel. In addition, the comm board drops the first chip select line from the input and makes the second input chip select line the first output chip select, the 3rd becomes second, and the fourth the 3rd output. This way, up to eight stacked panel PCB can be addressed individually.
 
-While the chip select line is active for the current panel, a micro controller unit (MCU) splits the incoming signal into smaller chunks. The driver boards are usually divided into quadrants, and the comm board forwards the matching data packages to the quadrants via I²C bus. The change of protocol has historic reasons. Most recent [comm boards v0.3](#comm-v0p3) use four connectors for the driver board, earlier versions had only two.
+While the chip select line is active for the current panel, a micro controller unit (MCU) splits the incoming signal into smaller chunks. The driver boards are usually divided into quadrants, and the comm board forwards the matching data packages to the quadrants via I²C bus. The change of protocol has historic reasons. Since [comm boards v0.3](#comm-v0p3) we use four connectors for the driver board, earlier versions had only two.
 
 ## Panel Comm PCB v0.3 {#comm-v0p3}
 
@@ -76,14 +76,14 @@ The bottom pins have the following meanings, seen from the direction of the driv
 |  4 | `SCK`          | (Serial Clock) |
 |  5 | `COPI`         | (Controller Out, Peripheral In) |
 |  6 | `CIPO`         | (Controller In, Peripheral Out) |
-|  7 | `CS1`          | (Chip Select 1) |
-|  8 | `CS2`          | (Chip Select 2) |
-|  9 | `CS3`          | (Chip Select 3) |
-| 10 | `CS4`          | (Chip Select 4) |
-| 11 | `CS5`          | (Chip Select 5) |
-| 12 | `CS6`          | (Chip Select 6) |
-| 13 | `CS7`          | (Chip Select 7) |
-| 14 | `NC`           | (Not Connected) |
+|  7 | `CS0`          | (Chip Select 0) |
+|  8 | `CS1`          | (Chip Select 1) |
+|  9 | `CS2`          | (Chip Select 2) |
+| 10 | `CS3`          | (Chip Select 3) |
+| 11 | `CS4`          | (Chip Select 4) |
+| 12 | `CS5`          | (Chip Select 5) |
+| 13 | `CS6`          | (Chip Select 6) |
+| 14 | `NC`, `CS7     | (Not Connected) [<v0.6], (Chip Select 7) |
 | 15 | `EXT_INTO`     |  |
 
 Here, `SCK`, `COPI`, `CIPO`, and `CSx` are used for the SPI communication. `RESET_MAIN` sends a reset signal to all MCUs.
