@@ -18,31 +18,31 @@ To identify packets for the current panel, each comm uses four of its connectors
 
 While the chip select line is active for the current panel, a micro controller unit (MCU) splits the incoming signal into smaller chunks. The driver boards are usually divided into quadrants, and the comm board forwards the matching data packages to the quadrants via I²C bus. The change of protocol has historic reasons. Since [comm boards v0.3](#comm-v0p3) we use four connectors for the driver board, earlier versions had only two.
 
-## Panel Comm PCB v0.3 {#comm-v0p3}
 
-![A rendering of the communication board v0.3 front](assets/comm_v0p3_front.png){:.ifr .pop}
 
-![A rendering of the communication board v0.3 back](assets/comm_v0p3_back.png){:standalone .ifr .clear data-img-class="pop"}
+## Panel Comm PCB v0.6 {#comm-v0p6}
 
-The communication board is a 40×40mm² PCB with two layers, most recently available as version v0.3 available in `comm_v0p3` (see [schematic](assets/comm_v0p3_schematic.pdf)). The connectors are designed as through-hole, other components are SMD.
+The comm board v0.6 represents a significant redesign of the communication board, moving from a 2-layer to a 4-layer PCB with improved signal integrity and power distribution (see [schematic](assets/comm_v0p6_schematic.pdf)). This version measures 40×40mm² and maintains full compatibility with the standard connector layout while providing enhanced electrical stability for more reliable operation, particularly in larger arena configurations. This version replaces the long-standing v0.3 design.
 
-### Function
+### Key Improvements
 
-The comm board v0.3 receive signals (P1), send them on (P2). Based on the chip select line it identifies the signals relevant for the current panel. This processing is done with the help of a 20MHz ATmega328P-AUR (IC5). The relevant signals are passed to one of the four driver board quadrants (P4…P7).
+The v0.6 design addresses electrical stability issues identified in earlier versions:
+
+- **4-layer stackup**: Signal+Power, Ground, Ground, Signal+Power layers for improved electrical performance and significantly reduced noise
+- **Enhanced power distribution**: Dedicated power planes provide more stable voltage regulation across the board
+- **Improved signal integrity**: Better impedance control and reduced crosstalk between signal lines
+- **Updated microcontroller**: Uses a more readily available ATmega328P package, replacing the ATmega328P-AUR used in v0.3 which had limited availability
+- **Additional chip select line**: Pin 14 now supports CS7 (previously not connected)
 
 ### Design
 
-The files are inside the `comm_v0p3` folder and find the production files inside the `comm_v0p3/production_v0/` directory.
-
-The design files are shared under a creative commons license as [KiCad](https://kicad-pcb.org/) EDA source files. They were initially developed by [IORodeo](https://iorodeo.com). If you open the schematics in a current version of KiCad you might be asked to remap the symbols when you first open the files.
+The KiCad design files are located in the `comm_v0p6` folder. Multiple production revisions are available in the `comm_v0p6/production/` directory (rev1, rev2, rev3), with the most recent being rev3. The board uses surface-mount components and follows modern design practices for signal integrity.
 
 ### Production
 
-![A picture of the assembled board v0.3](assets/comm_v0p3_front_photo.jpg){:standalone .ifr .clear data-img-class="pop"}
+This design has been successfully manufactured in several iterations at [JLCPCB](https://jlcpcb.com/). The production files in the `comm_v0p6/production/` directory are proven designs that have been fabricated and assembled without issues.
 
-The Comm board v0.3 is a two layer PCB with 1oz copper that has no special requirements on the production process. We typically order them on the default FR-4. The board has through-hole components such as the connectors, but the majority of components are SMD with the smallest package of 0603 (imperial) or 1608 (metric).
-
-For an order volume of 150 pieces we would expect prices around $16 for the assembled board. This might be around $1.50 for the board, $8 for the components, $6 for the assembly, and $.50 for shipping. Recently we have had good experiences with [Bittele](https://www.7pcb.com/). If you decide to order at Bittele, you can provide quotation Q70762A1 and order number 39493C2 as references for successful builds.
+This version is recommended for new builds requiring improved electrical stability and noise immunity, particularly for large arena configurations or applications sensitive to electrical interference.
 
 ## Panel Window PCB {#window}
 
@@ -91,6 +91,32 @@ Here, `SCK`, `COPI`, `CIPO`, and `CSx` are used for the SPI communication. `RESE
 # Historic designs
 
 These designs are kept for historic reasons and to debug existing systems. If you have one of them, you probably know what to do and just need the files. If you are building a new system, don't use them.
+
+## Panel Comm PCB v0.3 {#comm-v0p3}
+
+![A rendering of the communication board v0.3 front](assets/comm_v0p3_front.png){:.ifr .pop}
+
+![A rendering of the communication board v0.3 back](assets/comm_v0p3_back.png){:standalone .ifr .clear data-img-class="pop"}
+
+The communication board v0.3 is a 40×40mm² PCB with two layers, available in `comm_v0p3` (see [schematic](assets/comm_v0p3_schematic.pdf)). This version was produced for the longest time and has been used successfully across many arena setups before being replaced by [v0.6](#comm-v0p6). The connectors are designed as through-hole, other components are SMD.
+
+### Function
+
+The comm board v0.3 receive signals (P1), send them on (P2). Based on the chip select line it identifies the signals relevant for the current panel. This processing is done with the help of a 20MHz ATmega328P-AUR (IC5). The relevant signals are passed to one of the four driver board quadrants (P4…P7).
+
+### Design
+
+The files are inside the `comm_v0p3` folder and find the production files inside the `comm_v0p3/production_v0/` directory.
+
+The design files are shared under a creative commons license as [KiCad](https://kicad-pcb.org/) EDA source files. They were initially developed by [IORodeo](https://iorodeo.com). If you open the schematics in a current version of KiCad you might be asked to remap the symbols when you first open the files.
+
+### Production
+
+![A picture of the assembled board v0.3](assets/comm_v0p3_front_photo.jpg){:standalone .ifr .clear data-img-class="pop"}
+
+The Comm board v0.3 is a two layer PCB with 1oz copper that has no special requirements on the production process. We typically order them on the default FR-4. The board has through-hole components such as the connectors, but the majority of components are SMD with the smallest package of 0603 (imperial) or 1608 (metric).
+
+For an order volume of 150 pieces we would expect prices around $16 for the assembled board. This might be around $1.50 for the board, $8 for the components, $6 for the assembly, and $.50 for shipping. Recently we have had good experiences with [Bittele](https://www.7pcb.com/). If you decide to order at Bittele, you can provide quotation Q70762A1 and order number 39493C2 as references for successful builds.
 
 ## Panel Comm PCB v0.2 {#comm-v0p2}
 
