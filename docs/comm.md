@@ -92,6 +92,8 @@ Here, `SCK`, `COPI`, `CIPO`, and `CSx` are used for the SPI communication. `RESE
 
 These designs are preserved for historical reference and for debugging existing systems. If you have one of these boards, you likely know what to do and simply need the design files. If you are building a new system, do not use these versions.
 
+**Note:** Versions v0.4 and v0.5 were experimental designs exploring alternative power supply configurations. Both versions are not compatible with existing boards and were never produced. The design files exist in the repository (`comm_v0p4`, `comm_v0p4_opt`, and `comm_v0p5`) for reference purposes only.
+
 ## Panel Comm PCB v0.3 {#comm-v0p3}
 
 ![A rendering of the communication board v0.3 front](assets/comm_v0p3_front.png){:.ifr .pop}
